@@ -36,7 +36,7 @@ export default defineAppConfig({
     image: 'https://tailwindui.com/img/component-images/dark-project-app-screenshot.png',
   },
   announcement: {
-    enabled: true,
+    enabled: false,
     message: 'Nuxt Tailwind Kit is now available for Nuxt 3!',
     url: '/docs/getting-started/installation',
   },

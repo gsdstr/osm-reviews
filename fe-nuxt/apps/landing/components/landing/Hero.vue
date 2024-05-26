@@ -22,11 +22,11 @@ const appConfig = useAppConfig()
             {{ appConfig.description }}
           </p>
           <div class="mt-10 flex items-center justify-center gap-x-6">
-            <NuxtLink to="/docs/getting-started/installation" class="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              Get started
+            <NuxtLink to="/auth/register" class="rounded-md bg-indigo-600 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              Register
             </NuxtLink>
-            <NuxtLink target="_blank" to="https://github.com/gravitano/nuxt3-tailwind-kit" class="text-base font-semibold leading-7 text-gray-900">
-              View GitHub <span aria-hidden="true">→</span>
+            <NuxtLink to="/auth/login" class="text-base font-semibold leading-7 text-gray-900">
+              Login
             </NuxtLink>
           </div>
         </div>

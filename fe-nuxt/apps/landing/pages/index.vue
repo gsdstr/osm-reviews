@@ -9,11 +9,5 @@ useHead({
 </script>
 
 <template>
-  <div>
-    <LandingFeatureTwoColumn />
-
-    <LandingFeatureGrid />
-
-    <LandingCta />
-  </div>
+  <div />
 </template>

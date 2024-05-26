@@ -1,0 +1,24 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.12",
+    "nuxt": "^3.2.3"
+  },
+  "files": [
+    "components",
+    "composables",
+    "layouts",
+    "middleware",
+    "pages",
+    "public",
+    "app.vue",
+    "nuxt.config.ts"
+  ]
+}

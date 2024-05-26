@@ -1,0 +1,4 @@
+<template>
+  <MapHeader />
+  <slot />
+</template>

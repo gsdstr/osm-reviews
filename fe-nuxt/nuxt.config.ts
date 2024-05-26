@@ -2,10 +2,7 @@ export default defineNuxtConfig({
   extends: [
     './ui',
     './apps/landing',
-    './apps/store',
-    './apps/blog',
-    './apps/admin',
-    './apps/docs',
+    './apps/map',
     './apps/auth',
   ],
   modules: [
@@ -26,7 +23,7 @@ export default defineNuxtConfig({
       locale: 'en',
       messages: {
         en: {
-          app_name: 'Nuxt Tailwind Kit',
+          app_name: 'OSM Nuxt Example',
           app_description:
         'Quick Boilerplate built on top of Nuxt 3 and Tailwind CSS',
           menu_home: 'Home',
