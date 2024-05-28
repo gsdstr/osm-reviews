@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { useForm } from 'vee-validate'
+import { useField, useForm } from 'vee-validate'
 import { object, string } from 'yup'
+import { useAuthStore } from '~~/stores/auth'
 
 useHead({
   title: 'Register',
@@ -18,9 +19,45 @@ const { handleSubmit } = useForm({
   }),
 })
 
-const onSubmit = handleSubmit((values) => {
+const auth = useAuthStore()
+const router = useRouter()
+const error = ref()
+const route = useRoute()
+
+const { store } = useAuthStorage()
+
+const { value: email } = useField('email', undefined, {
+  initialValue: '',
+})
+const { value: password } = useField('password', undefined, {
+  initialValue: '',
+})
+
+const config = useRuntimeConfig()
+const API_URL = config.public.API_BASE_URL
+const onSubmit = handleSubmit(async (values) => {
   // eslint-disable-next-line no-console
   console.log(JSON.stringify(values, null, 2))
+  error.value = ''
+  try {
+    const res = await $fetch(`${API_URL}/auth/register`, {
+      method: 'post',
+      body: values,
+    })
+
+    const token = res.access_token
+    const user = res.user
+
+    store(token, user)
+
+    auth.user = user
+    auth.loggedIn = true
+
+    router.push((route.query as any).next || '/')
+  }
+  catch (e: any) {
+    error.value = e.data.error
+  }
 })
 </script>
 

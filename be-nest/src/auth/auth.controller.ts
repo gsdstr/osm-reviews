@@ -16,6 +16,7 @@ import { RegisterRequestDto } from './dtos/register-request.dto'
 import { LoginResponseDTO } from './dtos/login-response.dto'
 import { RegisterResponseDTO } from './dtos/register-response.dto'
 import { Public } from './decorators/public.decorator'
+import { LoginRequestDto } from './dtos/login-request.dto'
 
 @Public()
 @Controller('auth')
@@ -24,7 +25,7 @@ export class AuthController {
 
   @UseGuards(AuthGuard('local'))
   @Post('login')
-  async login(@Request() req): Promise<LoginResponseDTO | BadRequestException> {
+  async login(@Request() req, @Body() loginBody: LoginRequestDto): Promise<LoginResponseDTO | BadRequestException> {
     return this.authService.login(req.user)
   }
 

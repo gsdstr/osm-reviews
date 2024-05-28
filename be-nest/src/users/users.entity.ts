@@ -7,7 +7,7 @@ export class User {
 
   password: string
 
-  firstName: string
+  firstName?: string
 
-  lastName: string
+  lastName?: string
 }

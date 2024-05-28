@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useField, useForm } from 'vee-validate'
-import { object, string } from 'yup'
+import { object, string } from 'yup';
 import { useAuthStore } from '~~/stores/auth'
 
 useHead({
@@ -12,12 +12,13 @@ definePageMeta({
   middleware: 'guest',
 })
 
-const { handleSubmit } = useForm({
-  validationSchema: object({
-    email: string().required().email().label('Email'),
-    password: string().required().label('Password'),
-  }),
-})
+const { handleSubmit } = useForm() // TODO not work
+// const { handleSubmit } = useForm({
+//   validationSchema: object({
+//     email: string().required().email().label('Email'),
+//     password: string().required().label('Password'),
+//   }),
+// })
 
 const auth = useAuthStore()
 const router = useRouter()
@@ -33,10 +34,13 @@ const { value: password } = useField('password', undefined, {
   initialValue: '',
 })
 
+const config = useRuntimeConfig()
+const API_URL = config.public.API_BASE_URL
 const onSubmit = handleSubmit(async (values) => {
+  console.log('onSubmit')
   error.value = ''
   try {
-    const res = await $fetch('/api/auth/login', {
+    const res = await $fetch(`${API_URL}/auth/login`, {
       method: 'post',
       body: values,
     })
