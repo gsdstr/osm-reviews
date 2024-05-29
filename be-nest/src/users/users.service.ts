@@ -1,7 +1,7 @@
 import { UUID, randomUUID } from 'node:crypto'
 import { Injectable } from '@nestjs/common'
 import { User } from './users.entity'
-import { DBService } from 'src/db/db.service'
+import { DBService } from '../db/db.service'
 
 const DATA_PATH = '/'
 
