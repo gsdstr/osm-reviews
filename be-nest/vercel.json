@@ -17,5 +17,10 @@
                 "DELETE"
             ]
         }
-    ]
+    ],
+    "git": {
+        "deploymentEnabled": {
+            "main": false
+        }
+    }
 }

@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module'
 
 async function bootstrap() {
@@ -11,6 +12,7 @@ async function bootstrap() {
       optionsSuccessStatus: 204,
     },
   })
+  const configService = app.get(ConfigService);
 
   const config = new DocumentBuilder()
     .setTitle('OSM Backend')
@@ -20,6 +22,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('api', app, document)
 
-  await app.listen(3033)
+  const PORT = configService.get<number>('PORT');
+  await app.listen(PORT)
 }
 bootstrap()
