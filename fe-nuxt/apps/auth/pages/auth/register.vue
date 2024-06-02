@@ -11,13 +11,14 @@ definePageMeta({
   layout: 'auth',
 })
 
-const { handleSubmit } = useForm({
-  validationSchema: object({
-    name: string().required().label('Name'),
-    email: string().required().email().label('Email'),
-    password: string().required().label('Password'),
-  }),
-})
+const { handleSubmit } = useForm()
+// const { handleSubmit } = useForm({
+//   validationSchema: object({
+//     name: string().required().label('Name'),
+//     email: string().required().email().label('Email'),
+//     password: string().required().label('Password'),
+//   }),
+// })
 
 const auth = useAuthStore()
 const router = useRouter()

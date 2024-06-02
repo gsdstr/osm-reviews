@@ -6,6 +6,9 @@ import { AppService } from './app.service'
 import { UsersModule } from './users/users.module'
 import { AuthModule } from './auth/auth.module'
 import { JwtGuard } from './auth/guards/jwt.guard'
+import { PlacesModule } from './places/places.module';
+import { ReviewsModule } from './reviews/reviews.module';
+import { ReviewsModule } from './reviews/reviews.module';
 
 @Module({
   imports: [
@@ -25,6 +28,8 @@ import { JwtGuard } from './auth/guards/jwt.guard'
     // }),
     UsersModule,
     AuthModule,
+    PlacesModule,
+    ReviewsModule,
   ],
   controllers: [AppController],
   providers: [
