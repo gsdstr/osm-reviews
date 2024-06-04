@@ -16,7 +16,6 @@ export class UsersService {
 
   async findOneByEmail(email: string): Promise<User | null> {
     return await this.usersRepository.find(DATA_PATH, (entry: any) => {
-      console.log('find', entry.email, email)
       return entry.email === email
     })
   }

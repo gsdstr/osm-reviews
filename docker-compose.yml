@@ -1,0 +1,29 @@
+
+services:
+
+  backend:
+    build:
+        context: ./be-nest
+        dockerfile: Dockerfile
+    container_name: be-nest
+    environment:
+      - PORT=${PORT}
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./src:/be/src
+
+
+  frontend:
+    build:
+        context: ./fe-nuxt
+        dockerfile: Dockerfile
+    container_name: fe-nuxt
+    environment:
+      - PORT=${PORT}
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+    volumes:
+      - ./src:/fe/src
