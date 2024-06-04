@@ -8,7 +8,6 @@ import { AuthModule } from './auth/auth.module'
 import { JwtGuard } from './auth/guards/jwt.guard'
 import { PlacesModule } from './places/places.module';
 import { ReviewsModule } from './reviews/reviews.module';
-import { ReviewsModule } from './reviews/reviews.module';
 
 @Module({
   imports: [

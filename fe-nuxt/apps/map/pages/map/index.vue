@@ -5,5 +5,6 @@ definePageMeta({
 </script>
 
 <template>
-  <MapHero />
+  <MapSearch />
+  <MapLeaflet />
 </template>

@@ -32,10 +32,10 @@ const auth = useAuthStore()
       </template>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <NuxtLink v-if="auth.loggedIn" to="/admin" class="text-sm font-semibold leading-6 text-gray-900">
+      <!-- <NuxtLink v-if="auth.loggedIn" to="/admin" class="text-sm font-semibold leading-6 text-gray-900">
         Go to admin page <span aria-hidden="true">&rarr;</span>
-      </NuxtLink>
-      <NuxtLink v-else to="/auth/login" class="text-sm font-semibold leading-6 text-gray-900">
+      </NuxtLink> -->
+      <NuxtLink v-if="!auth.loggedIn" to="/auth/login" class="text-sm font-semibold leading-6 text-gray-900">
         Log in <span aria-hidden="true">&rarr;</span>
       </NuxtLink>
     </div>
