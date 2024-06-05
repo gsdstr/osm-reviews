@@ -1,21 +1,28 @@
-# Nuxt 3 builder
-FROM node:20-slim as builder
-
-WORKDIR /app
-
-COPY . .
-
-RUN npm run build
-
-# Nuxt 3 production
 FROM node:20-slim
 
-WORKDIR /app
+# Create app directory
+WORKDIR /usr/src/app
 
-COPY --from=builder /app/.output  /app/.output
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package*.json ./
+COPY .npmrc ./
 
-ENV NITRO_PORT=80
+RUN npm install -g pnpm
 
-EXPOSE 80
+# Install app dependencies
+RUN pnpm install
 
-CMD [ "node", ".output/server/index.mjs" ]
+# Bundle app source
+COPY . .
+
+# Copy the .env and .env.development files
+COPY .env ./
+
+# Creates a "dist" folder with the production build
+RUN npm run build
+
+# Expose the port on which the app will run
+EXPOSE 3000
+
+# Start the server using the production build
+CMD ["npm", "run", "start"]

@@ -1,29 +1,25 @@
-FROM node:20-slim as builder
-
-ENV NODE_ENV build
-
-USER node
-WORKDIR /home/node
-
-COPY package*.json ./
-RUN npm ci
-
-COPY --chown=node:node . .
-RUN npx prisma generate \
-    && npm run build \
-    && npm prune --omit=dev
-
-# ---
-
 FROM node:20-slim
 
-ENV NODE_ENV production
+# Create app directory
+WORKDIR /usr/src/app
 
-USER node
-WORKDIR /home/node
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package*.json ./
 
-COPY --from=builder --chown=node:node /home/node/package*.json ./
-COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
-COPY --from=builder --chown=node:node /home/node/dist/ ./dist/
+# Install app dependencies
+RUN npm install
 
-CMD ["node", "dist/main.js"]
+# Bundle app source
+COPY . .
+
+# Copy the .env and .env.development files
+COPY .env ./
+
+# Creates a "dist" folder with the production build
+RUN npm run build
+
+# Expose the port on which the app will run
+EXPOSE 3033
+
+# Start the server using the production build
+CMD ["npm", "run", "start:prod"]

@@ -6,12 +6,10 @@ services:
         context: ./be-nest
         dockerfile: Dockerfile
     container_name: be-nest
-    environment:
-      - PORT=${PORT}
     ports:
-      - '3000:3000'
+      - '3033:3033'
     volumes:
-      - ./src:/be/src
+      - ./be-nest/store://usr/src/app/store
 
 
   frontend:
@@ -22,8 +20,6 @@ services:
     environment:
       - PORT=${PORT}
     ports:
-      - '80:80'
+      - '3000:3000'
     depends_on:
       - backend
-    volumes:
-      - ./src:/fe/src
